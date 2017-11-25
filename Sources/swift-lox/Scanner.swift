@@ -101,15 +101,15 @@ extension Scanner {
         case "*":
             self._addToken(type: .star)
         case "!":
-            self._addToken(type: .bang)
+            self._addToken(type: self._match("=") ? .bangEqual : .bang)
         case "=":
-            self._addToken(type: .equal)
+            self._addToken(type: self._match("=") ? .equalEqual : .equal)
         case "<":
-            self._addToken(type: .less)
+            self._addToken(type: self._match("=") ? .lessEqual : .less)
         case ">":
-            self._addToken(type: .greater)
+            self._addToken(type: self._match("=") ? .greaterEqual : .greater)
         case "/":
-            if self._match(expected: "/") {
+            if self._match("/") {
                 // Start of a comment for the rest of the line
                 while (self._peek() != "\n" && !self._isAtEnd()) {
                     _ = self._advance()
@@ -140,7 +140,7 @@ extension Scanner {
 }
 
 extension Scanner {
-    private func _match(expected: Character) -> Bool {
+    private func _match(_ expected: Character) -> Bool {
         if self._isAtEnd() { return false }
         let currentIndex = self._source.index(self._source.startIndex, offsetBy: self._current)
         if self._source[currentIndex] != expected {
