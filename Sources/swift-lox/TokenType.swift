@@ -31,10 +31,12 @@ public enum TokenType: String {
     case less
     case lessEqual
     
+    // Literals
     case identifier
     case string
     case number
     
+    // Keywords
     case and
     case `class`
     case `else`

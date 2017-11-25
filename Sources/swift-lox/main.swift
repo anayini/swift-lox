@@ -1,5 +1,5 @@
 import Foundation
 
-Lox.run(source: "var x = 4")
+Lox.run(source: "var x >= 4")
 
 

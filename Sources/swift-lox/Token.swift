@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Represents a Token that is found during the scanning phase
+/// of the interpreter.  Contains information about the type of the
+/// token as well as its location in the file.
 public struct Token {
     let type: TokenType
     let lexeme: String
@@ -22,9 +25,9 @@ public struct Token {
     
     func toString() -> String {
         if let literal = self.literal {
-            return "\(self.type.rawValue) \(self.lexeme) \(literal)"
+            return "Type: \(self.type.rawValue) Literal: \(literal)"
         } else {
-            return "\(self.type.rawValue) \(self.lexeme)"
+            return "Type: \(self.type.rawValue) Lexeme: \(self.lexeme)"
         }
     }
 }
